@@ -1,0 +1,27 @@
+{
+  "name": "react_works",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "mkdir claspDist && cp -r src/server/* claspDist && cp dist/index.html claspDist && cp appsscript.json claspDist && clasp push && rm -rf claspDist"
+  },
+  "dependencies": {
+    "gas-client": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite-plugin-svgr": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.52",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0",
+    "vite-plugin-singlefile": "^0.10.0"
+  }
+}
