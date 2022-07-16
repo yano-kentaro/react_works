@@ -10,6 +10,10 @@
     "deploy": "mkdir claspDist && cp -r src/server/* claspDist && cp dist/index.html claspDist && cp appsscript.json claspDist && clasp push && rm -rf claspDist"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.0",
     "autoprefixer": "^10.4.7",
     "flowbite": "^1.4.7",
     "flowbite-react": "^0.1.3",

@@ -1,12 +1,12 @@
 //┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //┃
-//┃──┨ main.tsx [Ver.2022_07_16] ┃
+//┃──┨ GetCustom.tsx [Ver.2022_07_16] ┃
 //┃
 //┠──┨ Copyright(C) https://github.com/yano-kentaro
 //┠──┨ https://www.kengineer.dev
 //┠──┨ 開発開始日：2022_07_16
 //┃
-//┃──┨ メイン処理 ┃
+//┃──┨ 認証情報設定画面 ┃
 //┃
 //┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -16,16 +16,10 @@
 
 //------------------------------------------
 // Modules
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {
-  RecoilRoot, atom, selector, useRecoilState, useRecoilValue,
-} from 'recoil';
 
 //------------------------------------------
 // Components
-import SideBar from './layout/SideBar';
-import MainArea from './layout/MainArea';
+import TitleBar from './TitleBar';
 import Box from '@mui/material/Box';
 
 //------------------------------------------
@@ -33,11 +27,12 @@ import Box from '@mui/material/Box';
 
 //------------------------------------------
 // Tailwind CSS
-
+import '../../index.css'
 
 //------------------------------------------
 // Text
-// import * as TXT from 'src/text/'
+import allText from '../../text/text';
+const text = allText.GetCustom;
 
 //------------------------------------------
 // Static
@@ -45,13 +40,13 @@ import Box from '@mui/material/Box';
 //=============================================================|0
 //                    コンポーネント定義
 //====================================================|2022_07_16
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <Box className='flex'>
-        <SideBar />
-        <MainArea />
-      </Box>
-    </RecoilRoot>
-  </React.StrictMode>
-)
+function GetCustom() {
+
+  return (
+    <Box className="GetCustom">
+      <TitleBar title={text.title} />
+    </Box>
+  )
+}
+
+export default GetCustom

@@ -1,11 +1,13 @@
+import text from './text/text';
+
 const onOpen = () => {
-	const menu = SpreadsheetApp.getUi().createMenu("メニュー").addItem("ダイアログ表示", "openDialog");
+	const menu = SpreadsheetApp.getUi().createMenu(text.menuTitle).addItem(text.itemTitle, "openDialog");
 	menu.addToUi();
 };
 
 const openDialog = () => {
-	const html = HtmlService.createHtmlOutputFromFile("index").setWidth(600).setHeight(600);
-	SpreadsheetApp.getUi().showModalDialog(html, "タイトル");
+	const html = HtmlService.createHtmlOutputFromFile("index").setWidth(1200).setHeight(600);
+	SpreadsheetApp.getUi().showModalDialog(html, `${text.menuTitle} ${text.itemTitle}`);
 };
 
 interface SheetData {
