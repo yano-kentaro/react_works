@@ -1,9 +1,12 @@
-import "./App.css";
 import { GASClient } from "gas-client";
 
 import * as server from "../server/main";
 
 import { ReactComponent as WorksLogo } from '../assets/works_logo.svg';
+
+import {
+  RecoilRoot, atom, selector, useRecoilState, useRecoilValue,
+} from 'recoil';
 
 const { serverFunctions } = new GASClient<typeof server>();
 
@@ -15,12 +18,23 @@ function App() {
     serverFunctions.appendRowsToSheet("シート1", 1);
   };
 
+  const textState = atom({
+    key: 'textState', // unique ID (with respect to other atoms/selectors)
+    default: '', // default value (aka initial value)
+  });
+  const [text, setText] = useRecoilState(textState);
+
+  const onChange = () => {
+    setText('TEST');
+  };
+
   return (
     <div className="App">
-      <button type="button" onClick={handleButtonClick}>
+      <button type="button" onClick={onChange}>
         ボタン
       </button>
-      <WorksLogo />
+      {text}
+      {/* <WorksLogo /> */}
     </div>
   );
 }

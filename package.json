@@ -13,6 +13,7 @@
     "gas-client": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "recoil": "^0.7.4",
     "vite-plugin-svgr": "^2.2.0"
   },
   "devDependencies": {
