@@ -57,12 +57,12 @@ import '../index.css'
 //                    コンポーネント定義
 //====================================================|2022_07_16
 function MainArea() {
-  const value = useRecoilValue(mainAreaView);
+  const mainArea = useRecoilValue(mainAreaView);
 
   return (
     <Box className="MainArea">
       {(() => {
-        switch (value) {
+        switch (mainArea) {
           case 'getImportation':     return <GetImport />;
           case 'reserveImportation': return <ReserveImport />;
           case 'postImportation':    return <PostImport />;
