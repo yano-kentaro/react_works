@@ -16,14 +16,27 @@
 
 //------------------------------------------
 // Modules
-import {
-  RecoilRoot, atom, selector, useRecoilState, useRecoilValue,
-} from 'recoil';
+import { atom } from 'recoil';
 
 //=============================================================|0
 //                    メインエリア表示の状態管理
 //====================================================|2022_07_16
+
 export const mainAreaView = atom({
   key: 'mainAreaView',
   default: '',
+});
+
+//=============================================================|0
+//                    認証情報の状態管理
+//====================================================|2022_07_18
+
+export const sheetPropertiesState = atom({
+  key: 'authState',
+  default: {
+    apiKey: '',
+    apiToken: '',
+    appKey: '',
+    auth: false,
+  },
 });

@@ -18,36 +18,23 @@
 // Modules
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {
-  RecoilRoot, atom, selector, useRecoilState, useRecoilValue,
-} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 //------------------------------------------
 // Components
 import SideBar from './layout/SideBar';
 import MainArea from './layout/MainArea';
-import Box from '@mui/material/Box';
-
-//------------------------------------------
-// Functions
-
-//------------------------------------------
-// Tailwind CSS
-
-
-//------------------------------------------
-// Text
-// import * as TXT from 'src/text/'
-
-//------------------------------------------
-// Static
+import CssBaseline from '@mui/material/CssBaseline'
+import Box from '@mui/material/Box'
 
 //=============================================================|0
 //                    コンポーネント定義
 //====================================================|2022_07_16
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <RecoilRoot>
+      <CssBaseline />
       <Box className='flex'>
         <SideBar />
         <MainArea />

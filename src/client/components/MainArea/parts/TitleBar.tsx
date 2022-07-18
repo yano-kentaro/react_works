@@ -16,12 +16,15 @@
 
 //------------------------------------------
 // Components
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 
 //------------------------------------------
 // Tailwind CSS
-import '../../index.css'
+import '../../../index.css'
 
 //=============================================================|0
 //                         スタイル定義
@@ -42,13 +45,9 @@ const style = {
   }
 }
 
-
 //=============================================================|0
 //                       コンポーネント定義
 //====================================================|2022_07_16
-type TitleBarProps = {
-  title: string;
-}
 
 function TitleBar(props: TitleBarProps) {
   return (

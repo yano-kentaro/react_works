@@ -1,41 +1,57 @@
-import text from './text/text';
+//┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//┃
+//┃──┨ main.ts [Ver.2022_07_18] ┃
+//┃
+//┠──┨ Copyright(C) https://github.com/yano-kentaro
+//┠──┨ https://www.kengineer.dev
+//┠──┨ 開発開始日：2022_07_18
+//┃
+//┃──┨ メイン処理 ┃
+//┃
+//┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+//=============================================================|0
+//                         依存関係
+//====================================================|2022_07_18
+
+import { TextCommon } from './text/text';
+const text = new TextCommon();
+import { App } from './lib/app';
+const app = new App();
+import { Property } from './lib/property';
+const property = new Property();
+
+//=============================================================|0
+//                         シートを開いた際の処理
+//====================================================|2022_07_17
 
 const onOpen = () => {
 	const menu = SpreadsheetApp.getUi().createMenu(text.menuTitle).addItem(text.itemTitle, "openDialog");
 	menu.addToUi();
 };
 
+//=============================================================|0
+//                         メニューボタン押下時の処理
+//====================================================|2022_07_17
+
 const openDialog = () => {
 	const html = HtmlService.createHtmlOutputFromFile("index").setWidth(1200).setHeight(600);
 	SpreadsheetApp.getUi().showModalDialog(html, `${text.menuTitle} ${text.itemTitle}`);
 };
 
-interface SheetData {
-	name: string;
-	numOfRows: number;
+//=============================================================|0
+//                         認証設定送信時の処理
+//====================================================|2022_07_18
+
+export const setAuth = (data: PostProperties) => {
+	property.setProperties(data);
+	app.getAppAPI();
+};
+
+//=============================================================|0
+//                         認証設定取得時の処理
+//====================================================|2022_07_18
+
+export const getProperties = () => {
+	return property.getProperties();
 }
-
-// TODO: テスト用の関数なので、適切なものに変更する
-const getSheetData = (): SheetData => {
-	const sheet = SpreadsheetApp.getActiveSheet();
-	return {
-	name: sheet.getName(),
-	numOfRows: sheet.getMaxRows(),
-	};
-};
-
-// TODO: テスト用の関数なので、適切なものに変更する
-const appendRowsToSheet = (sheetName: string, rowsToAdd: number): void => {
-	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
-	if (!sheet) return;
-	sheet.insertRowsAfter(sheet.getMaxRows(), rowsToAdd);
-	sheet.getRange(1, 1, 5, 5).setValues([
-	[1, 2, 3, 4, 5],
-	[6, 7, 8, 9, 10],
-	[11, 12, 13, 14, 15],
-	[16, 17, 18, 19, 20],
-	[21, 22, 23, 24, 25],
-	]);
-};
-
-export { getSheetData, appendRowsToSheet };

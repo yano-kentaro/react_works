@@ -19,7 +19,7 @@
 
 //------------------------------------------
 // Components
-import TitleBar from './TitleBar';
+import TitleBar from './parts/TitleBar';
 import Box from '@mui/material/Box';
 
 //------------------------------------------

@@ -16,39 +16,37 @@
 
 //------------------------------------------
 // Modules
-import * as React from 'react';
-import {
-  RecoilRoot, atom, selector, useSetRecoilState, useRecoilValue,
-} from 'recoil';
+import React, { useEffect } from 'react';
+// サーバー関連
+import { GASClient } from "gas-client";
+import * as server from "../../server/main";
+const { serverFunctions } = new GASClient<typeof server>();
 
 //------------------------------------------
 // Recoil State
-import { mainAreaView } from '../atoms';
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { mainAreaView, sheetPropertiesState } from '../atoms';
 
 //------------------------------------------
 // Components
 import Box from '@mui/material/Box';
-import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import BookmarkSharpIcon from '@mui/icons-material/BookmarkSharp';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import DnsIcon from '@mui/icons-material/Dns';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
-import GetAppSharpIcon from '@mui/icons-material/GetAppSharp';
-import DnsIcon from '@mui/icons-material/Dns';
 import FolderIcon from '@mui/icons-material/Folder';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import GetAppSharpIcon from '@mui/icons-material/GetAppSharp';
 import InfoIcon from '@mui/icons-material/Info';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import PrivacyTipSharpIcon from '@mui/icons-material/PrivacyTipSharp';
+import SendIcon from '@mui/icons-material/Send';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 
 //------------------------------------------
 // Tailwind CSS
@@ -62,27 +60,6 @@ const text = allText.SideBar;
 //------------------------------------------
 // Static
 import { ReactComponent as WorksLogo } from '../../assets/works_logo.svg';
-
-//=============================================================|0
-//                         スタイル定義
-//====================================================|2022_07_16
-
-const style = {
-  sideBar: {
-    width: "300px",
-    height: "600px",
-    backgroundColor: "#F5F5F5",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    borderRight: "2px solid #E0E0E0",
-  },
-  worksLogo: {
-    width: "200px",
-    height: "50px",
-    margin: "20px 0",
-  }
-}
 
 //=============================================================|0
 //                    コンポーネント定義
@@ -108,6 +85,18 @@ function SideBar() {
 
   //------------------------------------------
   // Recoil State
+  // 初期描画時に認証情報を取得
+  const [sheetProperties ,setSheetProperties] = useRecoilState(sheetPropertiesState);
+  useEffect(() => {
+    const getSheetProperties = async () => {
+      const propertiesString = await serverFunctions.getProperties();
+      const properties: SheetProperties = JSON.parse(propertiesString);
+      setSheetProperties(properties);
+    }
+    getSheetProperties();
+  },[]);
+
+  //------------------------------------------
   // MainAreaViewのsetter
   const setMainAreaView = useSetRecoilState(mainAreaView);
   const updateMainAreaView = (view: string) => {
@@ -115,13 +104,13 @@ function SideBar() {
   }
 
   return (
-    <Box className='SideBar' sx={style.sideBar}>
-      <Box sx={style.worksLogo}>
+    <Box className='SideBar'>
+      <Box className='worksLogo'>
         <WorksLogo />
       </Box>
       <List className='w-full'>
         {/* レコード */}
-        <ListItemButton onClick={toggleRecordFlag} disabled={false}>
+        <ListItemButton onClick={toggleRecordFlag} disabled={!sheetProperties.auth}>
           <ListItemIcon><DnsIcon sx={{ color: "#069E2E" }} /></ListItemIcon>
           <ListItemText primary={text.record} />
           {recordFlag ? <ExpandLess /> : <ExpandMore />}
@@ -157,7 +146,7 @@ function SideBar() {
         {/* レコード */}
 
         {/* カスタムリスト */}
-        <ListItemButton onClick={toggleCustomFlag}>
+        <ListItemButton onClick={toggleCustomFlag} disabled={!sheetProperties.auth}>
           <ListItemIcon><FolderIcon sx={{ color: "#EBC459" }} /></ListItemIcon>
           <ListItemText primary={text.custom} />
           {customFlag ? <ExpandLess /> : <ExpandMore />}
@@ -222,7 +211,4 @@ function SideBar() {
   )
 }
 
-//=============================================================|0
-//                    Export
-//====================================================|2022_07_16
 export default SideBar

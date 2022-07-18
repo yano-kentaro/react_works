@@ -12,15 +12,22 @@
 
 //------------------------------------------
 // 汎用文字列
-namespace text {
-	export const menuTitle = 'サスケWorks';
-	export const itemTitle = 'API連携';
+export class TextCommon {
+	public menuTitle = 'サスケWorks';
+	public itemTitle = 'API連携';
+	public baseEndpoint = 'https://api.works.app/v1/';
+	public tabColor = '#38761D';
+	public tabNameLog = '実行履歴';
+	public unknownUser = '不明なユーザー';
 }
 
 //------------------------------------------
-// サイドバーの文字列
-namespace text.sideBar {
-	export const config = '認証設定';
+// app.ts
+export class TextApp {
+	public noAuth = '認証設定が完了していません';
+	public logTitle = 'アプリ詳細取得';
+	public tabTitle = 'アプリ詳細';
+	public tabTitleSub = 'サブレコード';
 }
 
 
@@ -150,4 +157,3 @@ const LOG_GET_USER = 'ユーザー詳細の取得';
 
 const LOG_GET_APPS = 'アプリ一覧の取得'
 
-export default text

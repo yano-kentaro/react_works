@@ -15,13 +15,8 @@
 //====================================================|2022_07_16
 
 //------------------------------------------
-// Modules
-import {
-  RecoilRoot, atom, selector, useSetRecoilState, useRecoilValue,
-} from 'recoil';
-
-//------------------------------------------
 // Recoil State
+import { useRecoilValue } from 'recoil';
 import { mainAreaView } from '../atoms';
 
 //------------------------------------------
@@ -40,22 +35,13 @@ import License from '../components/MainArea/License';
 import Box from '@mui/material/Box';
 
 //------------------------------------------
-// Functions
-
-//------------------------------------------
 // Tailwind CSS
 import '../index.css'
-
-//------------------------------------------
-// Text
-// import * as TXT from 'src/text/'
-
-//------------------------------------------
-// Static
 
 //=============================================================|0
 //                    コンポーネント定義
 //====================================================|2022_07_16
+
 function MainArea() {
   const mainArea = useRecoilValue(mainAreaView);
 
@@ -80,7 +66,4 @@ function MainArea() {
   )
 }
 
-//=============================================================|0
-//                    Export
-//====================================================|2022_07_16
 export default MainArea

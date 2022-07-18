@@ -87,6 +87,17 @@ namespace text.GetRecords {
 // 認証設定画面の文字列
 namespace text.SetAuth {
 	export const title = '認証設定';
+	export const formTitle = 'API認証設定フォーム';
+	export const apiKeyLabel = 'APIキー';
+	export const apiTokenLabel = 'APIトークン';
+	export const appKeyLabel = 'アプリキー';
+	export const apiKeyRequired = 'APIキーが入力されていません';
+	export const apiKeyInvalid = 'APIキーが不正です';
+	export const apiTokenRequired = 'APIトークンが入力されていません';
+	export const apiTokenInvalid = 'APIトークンが不正です';
+	export const appKeyRequired = 'アプリキーが入力されていません';
+	export const appKeyInvalid = 'アプリキーが不正です';
+	export const sendButtonLabel = '送信';
 }
 
 //------------------------------------------
