@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "mkdir claspDist && cp -r src/server/* claspDist && cp dist/index.html claspDist && cp appsscript.json claspDist && clasp push && rm -rf claspDist"
+    "deploy": "mkdir claspDist && cp -r src/server/* claspDist && cp dist/index.html claspDist && cp appsscript.json claspDist && rm -rf claspDist/assets && clasp push && rm -rf claspDist"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",

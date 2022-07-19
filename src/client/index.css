@@ -9,6 +9,11 @@
         margin-bottom: 1.5rem !important;
     }
 
+    .textBody {
+        margin-bottom: 1.5rem !important;
+        margin-left: 1.5rem !important;
+    }
+
     .SideBar {
         width: 300px;
         height: 600px;
