@@ -45,6 +45,10 @@ namespace text.Top {
 // 一括登録設定の取得画面の文字列
 namespace text.GetImport {
 	export const title = '一括登録設定の取得';
+	export const howToUse = '一括登録設定の取得とは';
+	export const submitButtonLabel = '設定取得';
+	export const loadingButtonLabel = '取得中';
+	export const successButtonLabel = '取得完了';
 }
 
 //------------------------------------------
@@ -87,6 +91,7 @@ namespace text.GetRecords {
 // 認証設定画面の文字列
 namespace text.SetAuth {
 	export const title = '認証設定';
+	export const howToUse = '認証設定とは';
 	export const formTitle = 'API認証設定フォーム';
 	export const apiKeyLabel = 'APIキー';
 	export const apiTokenLabel = 'APIトークン';
@@ -97,7 +102,9 @@ namespace text.SetAuth {
 	export const apiTokenInvalid = 'APIトークンが不正です';
 	export const appKeyRequired = 'アプリキーが入力されていません';
 	export const appKeyInvalid = 'アプリキーが不正です';
-	export const sendButtonLabel = '送信';
+	export const submitButtonLabel = '送信';
+	export const loadingButtonLabel = '送信中';
+	export const successButtonLabel = '送信完了';
 }
 
 //------------------------------------------

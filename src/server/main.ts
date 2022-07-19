@@ -20,6 +20,8 @@ import { App } from './lib/app';
 const app = new App();
 import { Property } from './lib/property';
 const property = new Property();
+import { Import } from './lib/import';
+const importAPI = new Import();
 
 //=============================================================|0
 //                         シートを開いた際の処理
@@ -40,6 +42,14 @@ const openDialog = () => {
 };
 
 //=============================================================|0
+//                         認証設定取得時の処理
+//====================================================|2022_07_18
+
+export const getProperties = () => {
+	return property.getProperties();
+}
+
+//=============================================================|0
 //                         認証設定送信時の処理
 //====================================================|2022_07_18
 
@@ -49,9 +59,9 @@ export const setAuth = (data: PostProperties) => {
 };
 
 //=============================================================|0
-//                         認証設定取得時の処理
-//====================================================|2022_07_18
+//                         一括登録設定取得時の処理
+//====================================================|2022_07_19
 
-export const getProperties = () => {
-	return property.getProperties();
-}
+export const getImportAPI = () => {
+	importAPI.getImportAPI();
+};

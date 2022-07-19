@@ -70,6 +70,32 @@ type responseGetAppFailed = {
 }
 
 //------------------------------------------
+// GET /import/settings のレスポンス
+type responseGetImportSuccess = {
+	count: number,
+	importSettings: {
+		importKey: string,
+		importName: string,
+		importTyep: string,
+		importKind: string,
+		importStatus: string,
+		importSubRecord: string,
+		importRegistAaccount: {
+			name: string,
+			code: string
+		}
+	}[]
+};
+
+type responseGetImportFailed = {
+	error: {
+		id: number,
+		code: string,
+		message: string
+	}
+}
+
+//------------------------------------------
 // タイトルバーの文字列 prop
 type TitleBarProps = {
     title: string;

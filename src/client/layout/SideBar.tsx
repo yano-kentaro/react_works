@@ -105,7 +105,7 @@ function SideBar() {
 
   return (
     <Box className='SideBar'>
-      <Box className='worksLogo'>
+      <Box className='worksLogo cursor-pointer' onClick={() => updateMainAreaView('top')}>
         <WorksLogo />
       </Box>
       <List className='w-full'>

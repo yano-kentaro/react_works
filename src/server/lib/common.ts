@@ -47,6 +47,14 @@ export class Common {
         return ret;
     }
 
+    //=================================================================|0
+    //                        シートの登録データ削除
+    //========================================================|2022.03.11
+    public clearSheetExceptColumns = (sheet: GoogleAppsScript.Spreadsheet.Sheet): void => {
+        const lastRow = sheet.getLastRow();
+        const lastColum = sheet.getLastColumn();
+        sheet.getRange(2,1,lastRow,lastColum).clearContent();
+    }
 
     //=============================================================|0
     //                         API実行ログの出力

@@ -19,15 +19,22 @@ export class TextCommon {
 	public tabColor = '#38761D';
 	public tabNameLog = '実行履歴';
 	public unknownUser = '不明なユーザー';
+	public noAuth = '認証設定が完了していません';
 }
 
 //------------------------------------------
 // app.ts
 export class TextApp {
-	public noAuth = '認証設定が完了していません';
 	public logTitle = 'アプリ詳細取得';
 	public tabTitle = 'アプリ詳細';
 	public tabTitleSub = 'サブレコード';
+}
+
+//------------------------------------------
+// import.ts
+export class TextImport {
+	public logTitle = '一括登録設定取得';
+	public tabTitle = '一括登録設定';
 }
 
 

@@ -16,6 +16,7 @@
 
 //------------------------------------------
 // Modules
+import { useState, useEffect } from 'react';
 // サーバーサイド関連
 import { GASClient } from "gas-client";
 import * as server from "../../../server/main";
@@ -35,9 +36,11 @@ import { sheetPropertiesState } from "../../atoms";
 import TitleBar from './parts/TitleBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import { blue, green } from '@mui/material/colors';
 
 //------------------------------------------
 // Tailwind CSS
@@ -82,18 +85,51 @@ function SetAuth() {
   });
 
   // フォーム送信
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const onSubmit: SubmitHandler<PostProperties> = async (data) => {
-    // ローディングアニメーションを開始する
+    setLoading(true);
+    setSuccess(false);
+    await serverFunctions.setAuth(data);
+    setLoading(false);
+    setSuccess(true);
+  }
 
-    const test = await serverFunctions.setAuth(data);
-
-    // ローディングアニメーションを終了する
+  // 送信ボタンデザイン
+  const buttonSx = {
+    ...(success && {
+      bgcolor: green[500],
+      '&:hover': {
+        bgcolor: green[700],
+      },
+    }),
+    ...(!success && {
+      bgcolor: blue[500],
+      '&:hover': {
+        bgcolor: blue[700],
+      },
+    })
+  };
+  // ローディングアニメーションデザイン
+  const circularProgressSx = {
+    color: blue[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: '-12px',
+    marginLeft: '-12px',
   }
 
   return (
     <Box className="SetAuth">
       <TitleBar title={text.title} />
       <Box className="p-8">
+        <Typography variant="h6" className="headline">
+          {text.howToUse}
+        </Typography>
+        <Typography variant="body1" className="textBody">
+          使い方の解説
+        </Typography>
         <Typography variant="h6" className="headline">
           {text.formTitle}
         </Typography>
@@ -121,11 +157,21 @@ function SetAuth() {
           />
           <Box className='flex justify-center'>
             <Button
-              className="w-1/4" color="primary"
-              variant="contained" size="large"
+              className="w-1/4" variant="contained" size="large"
+              disabled={loading} sx={buttonSx}
               onClick={handleSubmit(onSubmit)}
             >
-              {text.sendButtonLabel}
+              {
+                loading ? text.loadingButtonLabel
+                : success ? text.successButtonLabel
+                : text.submitButtonLabel
+              }
+              {loading && (
+                <CircularProgress
+                  size={24} 
+                  sx={circularProgressSx}
+                />
+              )}
             </Button>
           </Box>
         </Stack>

@@ -35,7 +35,7 @@ export class App {
         // 認証情報の検証
         const properties: SheetProperties = JSON.parse(this.property.getProperties());
         if (!properties.auth) {
-            return Browser.msgBox(this.textApp.noAuth);
+            return Browser.msgBox(this.textCommon.noAuth);
         }
 
         // ヘッダー組み立て
